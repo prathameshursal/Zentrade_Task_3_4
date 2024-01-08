@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        #dashboardContainer {
+            text-align: center;
+            margin: 20px;
+        }
+
+        #metricsTitle {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .dashboardBox {
+            display: inline-block;
+            width: 200px;
+            padding: 20px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .greenText {
+            color: #4CAF50;
+        }
+
+        .redText {
+            color: #FF0000;
+        }
+
+        /* Added styles for the charts */
+        .chartContainer {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .chartBox {
+            width: 45%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dashboardContainer">
+        <div id="metricsTitle">Company Metrics</div>
+
+        <div class="dashboardBox greenText">
+            $40641129
+            <div>Total revenue</div>
+        </div>
+
+        <div class="dashboardBox greenText">
+            $620
+            <div>Total Jobs Avg</div>
+        </div>
+
+        <div class="dashboardBox greenText">
+            655
+            <div>Tickets Created</div>
+        </div>
+
+        <div class="dashboardBox greenText">
+            735
+            <div>Tickets Scheduled</div>
+        </div>
+
+        <div class="dashboardBox redText">
+            $110488.8
+            <div>Outstanding amount</div>
+        </div>
+
+        <div class="dashboardBox greenText">
+            105
+            <div>Membership sold</div>
+        </div>
+
+        <div class="dashboardBox greenText">
+            436
+            <div>Jobs completed</div>
+        </div>
+
+        <div class="dashboardBox greenText">
+            65
+            <div>Total Cancelled</div>
+        </div>
+
+        <!-- Added charts container -->
+        <div class="chartContainer">
+            <!-- First Graph -->
+            <div class="chartBox">
+                <canvas id="revenueChart" width="400" height="200"></canvas>
+            </div>
+
+            <!-- Second Graph -->
+            <div class="chartBox">
+                <canvas id="jobTypeChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Chart.js code for the first graph
+        const revenueLabels = ['Everett', 'Seattle', 'Lynnwood', 'Bothell', 'Mukilteo', 'Edmonds'];
+        const revenueData = {
+            labels: revenueLabels,
+            datasets: [{
+                label: 'Revenue for November 2019',
+                data: [80000, 75000, 49000, 47000, 46000, 34000],
+                backgroundColor: [
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)'
+                ],
+                borderColor: [
+                'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(76, 175, 80, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const revenueConfig = {
+            type: 'bar',
+            data: revenueData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
+
+        // Get the canvas element for the first graph
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        // Create a new chart and render it on the canvas
+        new Chart(revenueCtx, revenueConfig);
+
+        // Chart.js code for the second graph
+        const jobTypeLabels = ['Service Plumbing', 'Bid Work HVAC', 'Service HVAC', 'Bid Work Plumbing', 'HWT Replacement', 'Maintenance', 'Material Sale'];
+        const jobTypeData = {
+            labels: jobTypeLabels,
+            datasets: [{
+                label: 'Revenue for November 2019',
+                data: [20000, 40000, 60000, 80000, 100000, 120000, 140000],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const jobTypeConfig = {
+            type: 'bar',
+            data: jobTypeData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
+
+        // Get the canvas element for the second graph
+        const jobTypeCtx = document.getElementById('jobTypeChart').getContext('2d');
+        // Create a new chart and render it on the canvas
+        new Chart(jobTypeCtx, jobTypeConfig);
+    </script>
+</body>
+
+</html>

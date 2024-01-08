@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1a1a1a; /* Dark black background outside the box */
+            color: #fff; /* Font color outside the box */
+        }
+
+        #loginContainer {
+            position: relative;
+            background-color: #0b0a0a; /* White background inside the box */
+            border-radius: 8px;
+            overflow: hidden;
+            width: 450px;
+            height: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #loginBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        #logo img {
+            height: 100px;
+           
+            padding-left: 50px;
+             /* Increased image size, adjust as needed */
+        }
+
+        #loginBox label {
+            display: block;
+            margin-bottom: 8px;
+            color: #000; /* Font color inside the box */
+        }
+
+        #loginBox input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            background-color: #eee; /* Background color for username and password fields */
+            color: #000; /* Font color for username and password fields */
+            border: 1px solid #ccc; /* Border color for username and password fields */
+            border-radius: 4px;
+        }
+
+        #loginBox button {
+            background-color: #8cc63f; /* Light green color for the button */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #loginBox button:hover {
+            background-color: #6b9c32; /* Darker green color on hover */
+        }
+
+        #loginBox a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #bfc1bc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginContainer">
+        <div id="logo">
+            <img src="SMARTSERV.png" alt="SmartServ Logo">
+        </div>
+        <div id="loginBox">
+            <form id="userForm" onsubmit="validateLogin(event)">
+                <label for="username">Username (Email): </label>
+                <input type="text" id="username" name="username" onchange="validateUsername()" required>
+
+                <label for="password">Password: </label>
+                <input type="password" id="password" name="password" onchange="validatePassword()" required>
+
+                <button type="submit">Login</button>
+
+                <a href="mailto:support@smartserv.io">Forgot your password?</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateUsername() {
+            var usernameInput = document.getElementById('username');
+            var usernameValue = usernameInput.value;
+
+            // Simple email validation regex
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(usernameValue)) {
+                alert('Invalid email format. Please enter a valid email address.');
+                usernameInput.value = '';
+            }
+        }
+
+        function validatePassword() {
+            var passwordInput = document.getElementById('password');
+            var passwordValue = passwordInput.value;
+
+            // Password should contain at least one uppercase letter and one number
+            var passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@]{8,}$/;
+
+            if (!passwordRegex.test(passwordValue)) {
+                alert('Invalid password. Password must contain at least one uppercase letter, one number, and only allow special character @.');
+                passwordInput.value = '';
+            }
+        }
+
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            var passwordInput = document.getElementById('password');
+            var passwordValue = passwordInput.value;
+
+            // Check if the password is correct for redirection
+            if (passwordValue === 'SmartServTest@123') {
+                window.location.href = 'dashboard2.png'; // Redirect to the dashboard page
+            } else {
+                alert('Incorrect password. Please try again.');
+                passwordInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1a1a1a; /* Dark black background outside the box */
+            color: #fff; /* Font color outside the box */
+        }
+
+        #loginContainer {
+            position: relative;
+            background-color: #000; /* Dark black background inside the box */
+            border-radius: 8px;
+            overflow: hidden;
+            width: 400px;
+            height: 350px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #loginBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            width: 300px;
+        }
+
+        #logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #logo img {
+            height: 100px; /* Increased image size, adjust as needed */
+        }
+
+        #loginBox label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff; /* Font color inside the box */
+        }
+
+        #loginBox input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            background-color: #333; /* Background color for username and password fields */
+            color: #fff; /* Font color for username and password fields */
+            border: 1px solid #555; /* Border color for username and password fields */
+            border-radius: 4px;
+        }
+
+        #loginBox button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #loginBox button:hover {
+            background-color: #0056b3;
+        }
+
+        #loginBox a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginContainer">
+        <div id="logo">
+            <img src="SMARTSERV.png" alt="SmartServ Logo">
+        </div>
+        <div id="loginBox">
+            <form id="userForm" onsubmit="validateLogin(event)">
+                <label for="username">Username (Email): </label>
+                <input type="text" id="username" name="username" onchange="validateUsername()" required>
+
+                <label for="password">Password: </label>
+                <input type="password" id="password" name="password" onchange="validatePassword()" required>
+
+                <button type="submit">Submit</button>
+
+                <a href="mailto:support@smartserv.io">Forgot your password?</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateUsername() {
+            var usernameInput = document.getElementById('username');
+            var usernameValue = usernameInput.value;
+
+            // Simple email validation regex
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(usernameValue)) {
+                alert('Invalid email format. Please enter a valid email address.');
+                usernameInput.value = '';
+            }
+        }
+
+        function validatePassword() {
+            var passwordInput = document.getElementById('password');
+            var passwordValue = passwordInput.value;
+
+            // Password should contain at least one uppercase letter and one number
+            var passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@]{8,}$/;
+
+            if (!passwordRegex.test(passwordValue)) {
+                alert('Invalid password. Password must contain at least one uppercase letter, one number, and only allow special character @.');
+                passwordInput.value = '';
+            }
+        }
+
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            var passwordInput = document.getElementById('password');
+            var passwordValue = passwordInput.value;
+
+            // Check if the password is correct for redirection
+            if (passwordValue === 'SmartServTest@123') {
+                window.location.href = 'dashboard2.png'; // Redirect to the dashboard page
+            } else {
+                alert('Incorrect password. Please try again.');
+                passwordInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
